@@ -587,6 +587,18 @@ pub(crate) unsafe fn optimize(
             llvm::LLVMRustRunFunctionPassManager(fpm, llmod);
         }
         {
+            let mut i = 0;
+            loop {
+                let path = format!("/tmp/llvm/{}", i);
+                if std::path::Path::new(&path).exists() {
+                    i += 1;
+                    continue;
+                }
+                let path = std::ffi::CString::new(path).unwrap();
+                let ret = llvm::LLVMWriteBitcodeToFile(llmod, path.as_ptr());
+                assert_eq!(ret, 0);
+                break;
+            }
             let _timer = cgcx.prof.extra_verbose_generic_activity(
                 "LLVM_module_optimize_module_passes",
                 &module.name[..],
