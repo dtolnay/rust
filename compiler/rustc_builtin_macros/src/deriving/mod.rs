@@ -128,3 +128,13 @@ fn assert_ty_bounds(
     let assert_path = cx.path_all(span, true, cx.std_path(assert_path), vec![GenericArg::Type(ty)]);
     stmts.push(cx.stmt_let_type_only(span, cx.ty_path(assert_path)));
 }
+
+fn lint_and_stability_attrs(attrs: &[ast::Attribute]) -> impl Iterator<Item = ast::Attribute> + '_ {
+    attrs
+        .iter()
+        .filter(|attr| {
+            [sym::allow, sym::warn, sym::deny, sym::forbid, sym::stable, sym::unstable]
+                .contains(&attr.name_or_empty())
+        })
+        .cloned()
+}

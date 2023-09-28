@@ -512,22 +512,7 @@ impl<'a> TraitDef<'a> {
                 // Keep the lint attributes of the previous item to control how the
                 // generated implementations are linted
                 let mut attrs = newitem.attrs.clone();
-                attrs.extend(
-                    item.attrs
-                        .iter()
-                        .filter(|a| {
-                            [
-                                sym::allow,
-                                sym::warn,
-                                sym::deny,
-                                sym::forbid,
-                                sym::stable,
-                                sym::unstable,
-                            ]
-                            .contains(&a.name_or_empty())
-                        })
-                        .cloned(),
-                );
+                attrs.extend(deriving::lint_and_stability_attrs(&item.attrs));
                 push(Annotatable::Item(P(ast::Item { attrs, ..(*newitem).clone() })))
             }
             _ => unreachable!(),
