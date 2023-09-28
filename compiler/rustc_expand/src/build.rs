@@ -593,13 +593,13 @@ impl<'a> ExtCtxt<'a> {
         P(ast::FnDecl { inputs, output })
     }
 
-    pub fn item(
+    pub fn item<K: 'static>(
         &self,
         span: Span,
         name: Ident,
         attrs: ast::AttrVec,
-        kind: ast::ItemKind,
-    ) -> P<ast::Item> {
+        kind: K,
+    ) -> P<ast::Item<K>> {
         P(ast::Item {
             ident: name,
             attrs,

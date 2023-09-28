@@ -124,6 +124,7 @@ symbols! {
     // There is currently no checking that all symbols are used; that would be
     // nice to have.
     Symbols {
+        ASSERT_FIELDS_ARE_TOTAL_EQ,
         Abi,
         AcqRel,
         Acquire,
@@ -138,6 +139,7 @@ symbols! {
         ArrayIntoIter,
         AsMut,
         AsRef,
+        AssertFieldsAreTotalEq,
         AssertParamIsClone,
         AssertParamIsCopy,
         AssertParamIsEq,
@@ -422,7 +424,6 @@ symbols! {
         assert_macro,
         assert_mem_uninitialized_valid,
         assert_ne_macro,
-        assert_receiver_is_total_eq,
         assert_zero_valid,
         asserting,
         associated_const_equality,

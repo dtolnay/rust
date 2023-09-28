@@ -58,12 +58,7 @@ impl ::core::cmp::PartialEq for Empty {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Empty { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Empty {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {}
-}
+impl ::core::cmp::Eq for Empty { }
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Empty {
     #[inline]
@@ -134,14 +129,17 @@ impl ::core::cmp::PartialEq for Point {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Point { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Point {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<u32>;
-    }
-}
+impl ::core::cmp::Eq for Point { }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl AssertFieldsAreTotalEq for Point {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_| { let _: ::core::cmp::AssertParamIsEq<u32>; };
+        }
+    };
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Point {
     #[inline]
@@ -221,14 +219,17 @@ impl ::core::cmp::PartialEq for PackedPoint {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for PackedPoint { }
 #[automatically_derived]
-impl ::core::cmp::Eq for PackedPoint {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<u32>;
-    }
-}
+impl ::core::cmp::Eq for PackedPoint { }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl AssertFieldsAreTotalEq for PackedPoint {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_| { let _: ::core::cmp::AssertParamIsEq<u32>; };
+        }
+    };
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for PackedPoint {
     #[inline]
@@ -335,14 +336,17 @@ impl ::core::cmp::PartialEq for Big {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Big { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Big {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<u32>;
-    }
-}
+impl ::core::cmp::Eq for Big { }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl AssertFieldsAreTotalEq for Big {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_| { let _: ::core::cmp::AssertParamIsEq<u32>; };
+        }
+    };
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Big {
     #[inline]
@@ -502,14 +506,17 @@ impl ::core::cmp::PartialEq for Unsized {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Unsized { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Unsized {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<[u32]>;
-    }
-}
+impl ::core::cmp::Eq for Unsized { }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl AssertFieldsAreTotalEq for Unsized {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_| { let _: ::core::cmp::AssertParamIsEq<[u32]>; };
+        }
+    };
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Unsized {
     #[inline]
@@ -620,15 +627,24 @@ impl<T: Trait, U> ::core::marker::StructuralEq for Generic<T, U> { }
 #[automatically_derived]
 impl<T: ::core::cmp::Eq + Trait, U: ::core::cmp::Eq> ::core::cmp::Eq for
     Generic<T, U> where T::A: ::core::cmp::Eq {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<T>;
-        let _: ::core::cmp::AssertParamIsEq<T::A>;
-        let _: ::core::cmp::AssertParamIsEq<U>;
-    }
 }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl<T: ::core::cmp::Eq + Trait, U: ::core::cmp::Eq>
+            AssertFieldsAreTotalEq for Generic<T, U> where
+            T::A: ::core::cmp::Eq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_|
+                    {
+                        let _: ::core::cmp::AssertParamIsEq<T>;
+                        let _: ::core::cmp::AssertParamIsEq<T::A>;
+                        let _: ::core::cmp::AssertParamIsEq<U>;
+                    };
+        }
+    };
 #[automatically_derived]
 impl<T: ::core::cmp::PartialOrd + Trait, U: ::core::cmp::PartialOrd>
     ::core::cmp::PartialOrd for Generic<T, U> where
@@ -744,15 +760,25 @@ impl<T: Trait, U> ::core::marker::StructuralEq for PackedGeneric<T, U> { }
 impl<T: ::core::cmp::Eq + ::core::marker::Copy + Trait, U: ::core::cmp::Eq +
     ::core::marker::Copy> ::core::cmp::Eq for PackedGeneric<T, U> where
     T::A: ::core::cmp::Eq + ::core::marker::Copy {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<T>;
-        let _: ::core::cmp::AssertParamIsEq<T::A>;
-        let _: ::core::cmp::AssertParamIsEq<U>;
-    }
 }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl<T: ::core::cmp::Eq + ::core::marker::Copy + Trait,
+            U: ::core::cmp::Eq + ::core::marker::Copy> AssertFieldsAreTotalEq
+            for PackedGeneric<T, U> where T::A: ::core::cmp::Eq +
+            ::core::marker::Copy {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_|
+                    {
+                        let _: ::core::cmp::AssertParamIsEq<T>;
+                        let _: ::core::cmp::AssertParamIsEq<T::A>;
+                        let _: ::core::cmp::AssertParamIsEq<U>;
+                    };
+        }
+    };
 #[automatically_derived]
 impl<T: ::core::cmp::PartialOrd + ::core::marker::Copy + Trait,
     U: ::core::cmp::PartialOrd + ::core::marker::Copy> ::core::cmp::PartialOrd
@@ -827,12 +853,7 @@ impl ::core::cmp::PartialEq for Enum0 {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Enum0 { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Enum0 {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {}
-}
+impl ::core::cmp::Eq for Enum0 { }
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Enum0 {
     #[inline]
@@ -899,14 +920,17 @@ impl ::core::cmp::PartialEq for Enum1 {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Enum1 { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Enum1 {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<u32>;
-    }
-}
+impl ::core::cmp::Eq for Enum1 { }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl AssertFieldsAreTotalEq for Enum1 {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_| { let _: ::core::cmp::AssertParamIsEq<u32>; };
+        }
+    };
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Enum1 {
     #[inline]
@@ -967,12 +991,7 @@ impl ::core::cmp::PartialEq for Fieldless1 {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Fieldless1 { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Fieldless1 {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {}
-}
+impl ::core::cmp::Eq for Fieldless1 { }
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Fieldless1 {
     #[inline]
@@ -1043,12 +1062,7 @@ impl ::core::cmp::PartialEq for Fieldless {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Fieldless { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Fieldless {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {}
-}
+impl ::core::cmp::Eq for Fieldless { }
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Fieldless {
     #[inline]
@@ -1152,16 +1166,22 @@ impl ::core::cmp::PartialEq for Mixed {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Mixed { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Mixed {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<u32>;
-        let _: ::core::cmp::AssertParamIsEq<Option<u32>>;
-        let _: ::core::cmp::AssertParamIsEq<Option<i32>>;
-    }
-}
+impl ::core::cmp::Eq for Mixed { }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl AssertFieldsAreTotalEq for Mixed {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_|
+                    {
+                        let _: ::core::cmp::AssertParamIsEq<u32>;
+                        let _: ::core::cmp::AssertParamIsEq<Option<u32>>;
+                        let _: ::core::cmp::AssertParamIsEq<Option<i32>>;
+                    };
+        }
+    };
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Mixed {
     #[inline]
@@ -1281,16 +1301,22 @@ impl ::core::cmp::PartialEq for Fielded {
 #[automatically_derived]
 impl ::core::marker::StructuralEq for Fielded { }
 #[automatically_derived]
-impl ::core::cmp::Eq for Fielded {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<u32>;
-        let _: ::core::cmp::AssertParamIsEq<bool>;
-        let _: ::core::cmp::AssertParamIsEq<Option<i32>>;
-    }
-}
+impl ::core::cmp::Eq for Fielded { }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl AssertFieldsAreTotalEq for Fielded {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_|
+                    {
+                        let _: ::core::cmp::AssertParamIsEq<u32>;
+                        let _: ::core::cmp::AssertParamIsEq<bool>;
+                        let _: ::core::cmp::AssertParamIsEq<Option<i32>>;
+                    };
+        }
+    };
 #[automatically_derived]
 impl ::core::cmp::PartialOrd for Fielded {
     #[inline]
@@ -1406,14 +1432,22 @@ impl<T, U> ::core::marker::StructuralEq for EnumGeneric<T, U> { }
 #[automatically_derived]
 impl<T: ::core::cmp::Eq, U: ::core::cmp::Eq> ::core::cmp::Eq for
     EnumGeneric<T, U> {
-    #[inline]
-    #[doc(hidden)]
-    #[coverage(off)]
-    fn assert_receiver_is_total_eq(&self) -> () {
-        let _: ::core::cmp::AssertParamIsEq<T>;
-        let _: ::core::cmp::AssertParamIsEq<U>;
-    }
 }
+const _: () =
+    {
+        trait AssertFieldsAreTotalEq {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self);
+        }
+        impl<T: ::core::cmp::Eq, U: ::core::cmp::Eq> AssertFieldsAreTotalEq
+            for EnumGeneric<T, U> {
+            const ASSERT_FIELDS_ARE_TOTAL_EQ: fn(&Self) =
+                |_|
+                    {
+                        let _: ::core::cmp::AssertParamIsEq<T>;
+                        let _: ::core::cmp::AssertParamIsEq<U>;
+                    };
+        }
+    };
 #[automatically_derived]
 impl<T: ::core::cmp::PartialOrd, U: ::core::cmp::PartialOrd>
     ::core::cmp::PartialOrd for EnumGeneric<T, U> {

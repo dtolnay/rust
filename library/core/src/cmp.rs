@@ -310,6 +310,7 @@ pub trait Eq: PartialEq<Self> {
     // impossible.
     //
     // This should never be implemented by hand.
+    #[cfg(bootstrap)]
     #[doc(hidden)]
     #[coverage(off)]
     #[inline]
