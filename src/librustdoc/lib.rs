@@ -261,6 +261,8 @@ fn opts() -> Vec<RustcOptGroup> {
         stable("C", |o| {
             o.optmulti("C", "codegen", "pass a codegen option to rustc", "OPT[=VALUE]")
         }),
+        stable("g", |o| o.optflagmulti("g", "", "Equivalent to -C debuginfo=2")),
+        stable("O", |o| o.optflagmulti("O", "", "Equivalent to -C opt-level=2")),
         stable("document-private-items", |o| {
             o.optflagmulti("", "document-private-items", "document private items")
         }),
